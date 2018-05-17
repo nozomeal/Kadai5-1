@@ -15,16 +15,37 @@ public class IntToEng {
     
     // 数値を英訳する変換するメソッド
     static String translateEng(int n) {
-    	//新しい文字列
+    	//新しい文字列生成
+    	//1の位
     	String s1="";
+    	//10の位
     	String s10="";
+    	//100の位
+    	String s100="";
+    	
     	//if(n<=10) {//10以下の時
     	s1=onePlace(n%10);
     	if(10 < n && n < 100) {//10より大きいかつ100未満の時
     		s10=tenPlace(n/10);
-    		if(s10=="ten") {s10=teen(n%10); s1="";}
+    		if(s10=="ten") {//11,12...などイレギュラーな場合
+    			s10=teen(n%10); 
+    			s1="";
+    		}
+    		 return s10+s1;
+    		 
+    	}else if(n >= 100 && n < 1000) {//100<=n<1000のとき
+    		s100=onePlace(n/100)+" hundred ";
+    		n=n-(n/100*100);
+    		s10=tenPlace(n/10);
+    		if(s10=="ten") {//11,12...などイレギュラーな場合
+    			s10=teen(n%10); 
+    			s1="";
+    		}else if(s1 == "zero") {
+    			s1="";
+    		}
+    		return s100+s10+s1;
     	}
-        return s10+s1;
+        return "";
     }
     
     static String onePlace(int n) {
