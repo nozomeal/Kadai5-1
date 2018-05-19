@@ -13,6 +13,9 @@ public class IntToEngTest {
 	int onetwothree = 123;
 	int onezerothree = 103;
 	int onezerozero = 100;
+	int fivezeroonesix = 5016;
+	int onezerox3 = 1000;
+	int ninex4 = 9999;
 	
 
 	@Test
@@ -39,7 +42,7 @@ public class IntToEngTest {
 	@Test
 	public void translateEngの21の表示(){
 		IntToEng ite = new IntToEng();
-		String expected = "twentyone";
+		String expected = "twenty-one";
 		String actual =ite.translateEng(twentyone);
 		assertThat(actual,is(expected));
 	}
@@ -47,7 +50,7 @@ public class IntToEngTest {
 	@Test
 	public void translateEngの123の表示(){
 		IntToEng ite = new IntToEng();
-		String expected = "one hundred twentythree";
+		String expected = "one hundred twenty-three";
 		String actual =ite.translateEng(onetwothree);
 		assertThat(actual,is(expected));
 	}
@@ -63,6 +66,28 @@ public class IntToEngTest {
 		IntToEng ite = new IntToEng();
 		String expected = "one hundred ";
 		String actual =ite.translateEng(onezerozero);
+		assertThat(actual,is(expected));
+	}
+	
+	@Test
+	public void translateEngの5016の表示(){
+		IntToEng ite = new IntToEng();
+		String expected = "five thousand sixteen";
+		String actual =ite.translateEng(fivezeroonesix);
+		assertThat(actual,is(expected));
+	}
+	@Test
+	public void translateEngの1000の表示(){
+		IntToEng ite = new IntToEng();
+		String expected = "one thousand ";
+		String actual =ite.translateEng(onezerox3);
+		assertThat(actual,is(expected));
+	}
+	@Test
+	public void translateEngの9999の表示(){
+		IntToEng ite = new IntToEng();
+		String expected = "nine thousand nine hundred ninety-nine";
+		String actual =ite.translateEng(ninex4);
 		assertThat(actual,is(expected));
 	}
 }

@@ -22,6 +22,8 @@ public class IntToEng {
     	String s10="";
     	//100の位
     	String s100="";
+    	//1000の位
+    	String s1000="";
     	
     	//if(n<=10) {//10以下の時
     	s1=onePlace(n%10);
@@ -44,8 +46,29 @@ public class IntToEng {
     			s1="";
     		}
     		return s100+s10+s1;
+    	}else if(n >= 1000 && n < 10000) {//1000<=n<10000のとき
+    		s1000=onePlace(n/1000)+" thousand ";
+    		s100=onePlace((n%1000)/100);
+    		if(s100=="zero") {//イレギュラーな場合
+    			s100="";
+    		}else s100+=" hundred ";
+    		s10=tenPlace((n%100)/10);
+    		if(s10=="ten") {//11,12...などイレギュラーな場合
+    			s10=teen(n%10); 
+    			s1="";
+    		}else if(s10=="zero") {
+    			s10="";
+    		}
+    		if(s10=="ten") {//11,12...などイレギュラーな場合
+    			s10=teen(n%10); 
+    			s1="";
+    		}else if(s1 == "zero") {
+    			s1="";
+    		}
+    		return s1000+s100+s10+s1;
     	}
         return "";
+    	
     }
     
     static String onePlace(int n) {
@@ -106,21 +129,21 @@ public class IntToEng {
     	case 1:
     		return "ten";
     	case 2:
-    		return "twenty";
+    		return "twenty-";
     	case 3:
-    		return "thirty";
+    		return "thirty-";
     	case 4:
-    		return "forty";
+    		return "forty-";
     	case 5:
-    		return "fifty";
+    		return "fifty-";
     	case 6:
-    		return "sixty";
+    		return "sixty-";
     	case 7:
-    		return "seventy";
+    		return "seventy-";
     	case 8:
-    		return "eighty";
+    		return "eighty-";
     	case 9:
-    		return "ninety";
+    		return "ninety-";
     	}
     	return "";
     }
