@@ -72,7 +72,13 @@ public class IntToEng {
     }
     
     static String onePlace(int n) {
-    	switch(n) {
+    	String[] onePlace= {"zero","one","two","three","four","five","six","seven","eight","nine","ten"};
+    	for(int i=0;i<=10;i++) {
+    		if(n==i) {
+    			return onePlace[i];
+    		}
+    	}
+    	/*switch(n) {
     	case 0:
     		return "zero";
     	case 1:
@@ -95,12 +101,18 @@ public class IntToEng {
     		return "nine";
     	case 10:
     		return "ten";
-    	}
+    	}*/
     	return "";
     }
     
     static String teen(int n) {
-    	switch(n) {
+    	String teen[] = {"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eightteen","nineteen"};
+    	for(int i=0;i<=9;i++) {
+    		if(n==i) {
+    			return teen[i];
+    		}
+    	}
+    	/*switch(n) {
     	case 0:
     		return "ten";
     	case 1:
@@ -121,11 +133,17 @@ public class IntToEng {
     		return "eighteen";
     	case 9:
     		return "nineteen";
-    	}
+    	}*/
     	return "";
     }
     static String tenPlace(int n) {
-    	switch(n) {
+    	String tenPlace[] = {"ten","twenty","thirty-","forty-","fifty-","sixty-","seventy-","eighty-","ninety-"};
+    	for(int i=0;i<10;i++) {
+    		if(n==i) {
+    			return tenPlace[i];
+    		}
+    	}
+    	/*switch(n) {
     	case 1:
     		return "ten";
     	case 2:
@@ -144,7 +162,7 @@ public class IntToEng {
     		return "eighty-";
     	case 9:
     		return "ninety-";
-    	}
+    	}*/
     	return "";
     }
 }
