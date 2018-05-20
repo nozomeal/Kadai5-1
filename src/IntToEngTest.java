@@ -16,6 +16,7 @@ public class IntToEngTest {
 	int fivezeroonesix = 5016;
 	int onezerox3 = 1000;
 	int ninex4 = 9999;
+	int onezerox4=10000;
 	
 
 	@Test
@@ -79,7 +80,7 @@ public class IntToEngTest {
 	@Test
 	public void translateEngの1000の表示(){
 		IntToEng ite = new IntToEng();
-		String expected = "one thousand ";
+		String expected = "one thousand";
 		String actual =ite.translateEng(onezerox3);
 		assertThat(actual,is(expected));
 	}
@@ -88,6 +89,13 @@ public class IntToEngTest {
 		IntToEng ite = new IntToEng();
 		String expected = "nine thousand nine hundred ninety-nine";
 		String actual =ite.translateEng(ninex4);
+		assertThat(actual,is(expected));
+	}
+	@Test
+	public void translateEngの10000の表示(){
+		IntToEng ite = new IntToEng();
+		String expected = "ten thousand";
+		String actual =ite.translateEng(onezerox4);
 		assertThat(actual,is(expected));
 	}
 }
