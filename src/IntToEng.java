@@ -33,7 +33,8 @@ public class IntToEng {
     			s10=teen(n%10); 
     			s1="";
     		}
-    		 return s10+s1;
+    		if(s10!="" && s1!="") s10+="-";
+    		return s10+s1;
     		 
     	}else if(n >= 100 && n < 1000) {//100<=n<1000のとき
     		s100=onePlace(n/100)+" hundred ";
@@ -45,26 +46,31 @@ public class IntToEng {
     		}else if(s1 == "zero") {
     			s1="";
     		}
+    		if(s10!="" && s1!="") s10+="-";
     		return s100+s10+s1;
-    	}else if(n >= 1000 && n < 10000) {//1000<=n<10000のとき
-    		s1000=onePlace(n/1000)+" thousand ";
+    	}else if(n >= 1000 && n <= 10000) {//1000<=n<10000のとき
+    		s1000=onePlace(n/1000)+" thousand";
     		s100=onePlace((n%1000)/100);
     		if(s100=="zero") {//イレギュラーな場合
     			s100="";
     		}else s100+=" hundred ";
-    		s10=tenPlace((n%100)/10);
+    		n=n-(n/100*100);
+    		s10=tenPlace(n/10);
     		if(s10=="ten") {//11,12...などイレギュラーな場合
     			s10=teen(n%10); 
     			s1="";
+    			//if(n>10) s10="";
     		}else if(s10=="zero") {
     			s10="";
     		}
-    		if(s10=="ten") {//11,12...などイレギュラーな場合
-    			s10=teen(n%10); 
-    			s1="";
-    		}else if(s1 == "zero") {
+    		if(s10 != "ten" && s1 == "zero") {
     			s1="";
     		}
+    		
+    		if(s10!="" && s1!="") s10+="-";
+    		if(s100!="") s1000+=" ";
+    		else if(s10!="" | s1!="") s1000+=" ";
+    		//return s1000+","+s100+","+s10+","+s1;
     		return s1000+s100+s10+s1;
     	}
         return "";
@@ -73,11 +79,7 @@ public class IntToEng {
     
     static String onePlace(int n) {
     	String[] onePlace= {"zero","one","two","three","four","five","six","seven","eight","nine","ten"};
-    	for(int i=0;i<=10;i++) {
-    		if(n==i) {
-    			return onePlace[i];
-    		}
-    	}
+    	return onePlace[n];
     	/*switch(n) {
     	case 0:
     		return "zero";
@@ -102,9 +104,7 @@ public class IntToEng {
     	case 10:
     		return "ten";
     	}*/
-    	return "";
     }
-    
     static String teen(int n) {
     	String teen[] = {"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eightteen","nineteen"};
     	for(int i=0;i<=9;i++) {
@@ -137,12 +137,9 @@ public class IntToEng {
     	return "";
     }
     static String tenPlace(int n) {
-    	String tenPlace[] = {"ten","twenty","thirty-","forty-","fifty-","sixty-","seventy-","eighty-","ninety-"};
-    	for(int i=0;i<10;i++) {
-    		if(n==i) {
-    			return tenPlace[i];
-    		}
-    	}
+    	String tenPlace[] = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety","ten"};
+    	if(n==0) return "";
+    	else return tenPlace[n-1];
     	/*switch(n) {
     	case 1:
     		return "ten";
@@ -163,6 +160,5 @@ public class IntToEng {
     	case 9:
     		return "ninety-";
     	}*/
-    	return "";
     }
 }
